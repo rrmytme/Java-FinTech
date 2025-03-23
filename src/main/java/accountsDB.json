@@ -1,0 +1,48 @@
+{
+  "Accounts": {
+    "savings": [
+      {
+        "accountNumber": 952141,
+        "pin": 191904
+      },
+      {
+        "accountNumber": 952142,
+        "pin": 191905
+      },
+      {
+        "accountNumber": 952143,
+        "pin": 191906
+      },
+      {
+        "accountNumber": 952144,
+        "pin": 191907
+      },
+      {
+        "accountNumber": 952145,
+        "pin": 191908
+      }
+    ],
+    "checking": [
+      {
+        "accountNumber": 1052141,
+        "pin": 201904
+      },
+      {
+        "accountNumber": 1052142,
+        "pin": 201905
+      },
+      {
+        "accountNumber": 1052143,
+        "pin": 201906
+      },
+      {
+        "accountNumber": 1052144,
+        "pin": 201907
+      },
+      {
+        "accountNumber": 1052145,
+        "pin": 201908
+      }
+    ]
+  }
+}
