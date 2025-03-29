@@ -1,6 +1,5 @@
 {
-  "Accounts": {
-    "savings": [
+  "Accounts": [
       {
         "accountNumber": 952141,
         "pin": 191904
@@ -20,9 +19,7 @@
       {
         "accountNumber": 952145,
         "pin": 191908
-      }
-    ],
-    "checking": [
+      },
       {
         "accountNumber": 1052141,
         "pin": 201904
@@ -45,4 +42,3 @@
       }
     ]
   }
-}

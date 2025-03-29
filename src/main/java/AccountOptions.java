@@ -1,5 +1,4 @@
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class AccountOptions extends Accounts {
@@ -7,34 +6,28 @@ public class AccountOptions extends Accounts {
     Scanner menuInput = new Scanner(System.in);
     DecimalFormat moneyFormat = new DecimalFormat("'$'###,##0.00");
 
-    HashMap<Integer, Integer> data = new HashMap<>();
-
     public void getLogin() {
         int x = 1;
         do{
             try{
-                data.put(123456, 135086);
-                data.put(123457, 975124);
-
+                // simulate json file as db
+                String filePath = "accountsDB.json";
                 System.out.println("Welcome to ATM");
                 System.out.println("Enter your Customer Number");
-                setCustomerNumber(menuInput.nextInt());
-
+                int account = menuInput.nextInt();
                 System.out.println("Enter your PIN Number");
-                setPinNumber(menuInput.nextInt());
+                int pin = menuInput.nextInt();
+                boolean isValid = Utils.validateAccount(filePath, account, pin);
+                if(isValid){
+                    getAccountType();
+                }
+                else{
+                    System.out.println("\nWrong Customer Number or Wrong PIN Number\n\n");
+                }
             }
             catch(Exception e){
                 System.out.println("\nInvalid Characters Only Numbers Allowed\n" + e);
                 x = 2;
-            }
-
-            int cn = getCustomerNumber();
-            int pn = getPinNumber();
-            if(data.containsKey(cn) && data.get(cn) == pn){
-                getAccountType();
-            }
-            else{
-                System.out.println("\nWrong Customer Number or Wrong PIN Number\n\n");
             }
         }while(x == 1);
     }
