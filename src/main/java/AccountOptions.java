@@ -5,20 +5,23 @@ public class AccountOptions extends Accounts {
 
     Scanner menuInput = new Scanner(System.in);
     DecimalFormat moneyFormat = new DecimalFormat("'$'###,##0.00");
+    // simulate json file as db
+    String filePath = "accountsDB.json";
+    int account;
+    int pin;
 
     public void getLogin() {
         int x = 1;
         do{
             try{
-                // simulate json file as db
-                String filePath = "accountsDB.json";
                 System.out.println("Welcome to ATM");
                 System.out.println("Enter your Customer Number");
-                int account = menuInput.nextInt();
+                account = menuInput.nextInt();
                 System.out.println("Enter your PIN Number");
-                int pin = menuInput.nextInt();
-                boolean isValid = Utils.validateAccount(filePath, account, pin);
-                if(isValid){
+                pin = menuInput.nextInt();
+
+                Boolean isValidCustomer = Utils.validateAccount(filePath, account, pin);
+                if(isValidCustomer){
                     getAccountType();
                 }
                 else{
@@ -48,6 +51,7 @@ public class AccountOptions extends Accounts {
         }
     }
 
+
     public void getChecking() {
         System.out.println("Checking Account");
         System.out.println("Type 1 - View Balance");
@@ -56,18 +60,19 @@ public class AccountOptions extends Accounts {
         System.out.println("Type 4 - Exit");
 
         int selection = menuInput.nextInt();
+        int accountBalance = Utils.getAccountBalance(filePath, account, pin);
 
         switch (selection) {
             case 1 -> {
-                System.out.println("Checking Account Balance: " + moneyFormat.format(getCheckingBalance()));
+                System.out.println("Checking Account Balance: " + moneyFormat.format(accountBalance));
                 getAccountType();
             }
             case 2 -> {
-                getCheckingWithdrawInput();
+                getCheckingWithdrawInput(accountBalance);
                 getAccountType();
             }
             case 3 -> {
-                getCheckingDepositInput();
+                getCheckingDepositInput(accountBalance);
                 getAccountType();
             }
             case 4 -> System.out.println("Thank you for using ATM, Bye");

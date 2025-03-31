@@ -5,8 +5,8 @@ public class Accounts {
 
     private int customerNumber;
     private int pinNumber;
-    private double checkingBalance = 0;
-    private double savingBalance = 0;
+    private double checkingBalance;
+    private double savingBalance;
 
     Scanner input = new Scanner(System.in);
     DecimalFormat moneyFormat = new DecimalFormat("'$'###,##0.00");
@@ -35,30 +35,30 @@ public class Accounts {
         return savingBalance;
     }
 
-    public void calcCheckingWithdraw(double amount){
-        checkingBalance = (checkingBalance - amount);
+    public double calcCheckingWithdraw(double checkingBalance, double withdrawamount){
+        return checkingBalance = (checkingBalance - withdrawamount);
     }
 
     public void calcSavingWithdraw(double amount){
         savingBalance = (savingBalance - amount);
     }
 
-    public void calcCheckingDeposit(double amount){
-        checkingBalance = (checkingBalance + amount);
+    public double calcCheckingDeposit(double checkingBalance, double amount){
+        return  checkingBalance = (checkingBalance + amount);
     }
 
     public void calcSavingDeposit(double amount){
         savingBalance = (savingBalance + amount);
     }
 
-    public void getCheckingWithdrawInput() {
+    public void getCheckingWithdrawInput(int checkingBalance) {
         System.out.println("Checking Account balance: " + moneyFormat.format(checkingBalance));
         System.out.print("Amount you want to withdraw from Checking Account: ");
         double amount = input.nextDouble();
 
         if(checkingBalance - amount >= 0){
-            calcCheckingWithdraw(amount);
-            System.out.println("New Checking Account Balance: " + moneyFormat.format(checkingBalance));
+            double recentBalance = calcCheckingWithdraw(checkingBalance, amount);
+            System.out.println("New Checking Account Balance: " + moneyFormat.format(recentBalance));
         }
         else{
             System.out.println("Not Enough Money to Withdraw");
@@ -79,14 +79,14 @@ public class Accounts {
         }
     }
 
-    public void getCheckingDepositInput(){
+    public void getCheckingDepositInput(int checkingBalance){
         System.out.println("Checking Account Balance: " + moneyFormat.format(checkingBalance));
         System.out.print("Amount you want to deposit to Checking Account: ");
         double amount = input.nextDouble();
 
         if(checkingBalance + amount >= 0){
-            calcCheckingDeposit(amount);
-            System.out.println("New Checking Account Balance: " + moneyFormat.format(checkingBalance));
+            double recentBalance = calcCheckingDeposit(checkingBalance, amount);
+            System.out.println("New Checking Account Balance: " + moneyFormat.format(recentBalance));
         }
         else{
             System.out.println("No Money to Deposit");

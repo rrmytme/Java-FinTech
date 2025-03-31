@@ -2,43 +2,53 @@
   "Accounts": [
       {
         "accountNumber": 952141,
-        "pin": 191904
+        "pin": 191904,
+        "balance": 1000
       },
       {
         "accountNumber": 952142,
-        "pin": 191905
+        "pin": 191905,
+        "balance": 1000
       },
       {
         "accountNumber": 952143,
-        "pin": 191906
+        "pin": 191906,
+        "balance": 1000
       },
       {
         "accountNumber": 952144,
-        "pin": 191907
+        "pin": 191907,
+        "balance": 1000
       },
       {
         "accountNumber": 952145,
-        "pin": 191908
+        "pin": 191908,
+        "balance": 1000
       },
       {
         "accountNumber": 1052141,
-        "pin": 201904
+        "pin": 201904,
+        "balance": 1000
       },
       {
         "accountNumber": 1052142,
-        "pin": 201905
+        "pin": 201905,
+        "balance": 1000
       },
       {
         "accountNumber": 1052143,
-        "pin": 201906
+        "pin": 201906,
+        "balance": 1000
       },
       {
         "accountNumber": 1052144,
-        "pin": 201907
+        "pin": 201907,
+        "balance": 1000
       },
       {
         "accountNumber": 1052145,
-        "pin": 201908
+        "pin": 201908,
+        "balance": 1000
       }
     ]
   }

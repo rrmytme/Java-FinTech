@@ -22,4 +22,23 @@ public class Utils {
         }
         return false; // No match found
     }
+
+    public static int getAccountBalance(String filePath, int accountNumber, int pin) {
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(filePath)));
+            JSONObject json = new JSONObject(content);
+            JSONArray accounts = json.getJSONArray("Accounts");
+
+            for (int i = 0; i < accounts.length(); i++) {
+                JSONObject account = accounts.getJSONObject(i);
+                if (account.getInt("accountNumber") == accountNumber &&
+                        account.getInt("pin") == pin) {
+                    return account.getInt("balance");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
