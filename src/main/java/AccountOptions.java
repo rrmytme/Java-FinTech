@@ -2,7 +2,6 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class AccountOptions extends Accounts {
-
     Scanner menuInput = new Scanner(System.in);
     DecimalFormat moneyFormat = new DecimalFormat("'$'###,##0.00");
     // simulate json file as db
@@ -14,18 +13,34 @@ public class AccountOptions extends Accounts {
         int x = 1;
         do{
             try{
-                System.out.println("Welcome to ATM");
-                System.out.println("Enter your Customer Number");
-                account = menuInput.nextInt();
-                System.out.println("Enter your PIN Number");
-                pin = menuInput.nextInt();
+                System.out.println("Welcome to JAVA Bank");
+                System.out.println("Existing customer :) [YES/NO]?");
+                String customerStatus = menuInput.nextLine();
+                if(customerStatus.equalsIgnoreCase("yes")){
+                    System.out.println("Enter your Customer Number");
+                    account = menuInput.nextInt();
+                    System.out.println("Enter your PIN Number");
+                    pin = menuInput.nextInt();
 
-                boolean isValidCustomer = Utils.validateAccount(filePath, account, pin);
-                if(isValidCustomer){
-                    getAccountType();
+                    boolean isValidCustomer = Utils.validateAccount(filePath, account, pin);
+                    if(isValidCustomer){
+                        getAccountType();
+                    }
+                    else{
+                        System.out.println("\nWrong Customer Number or Wrong PIN Number\n\n");
+                    }
                 }
-                else{
-                    System.out.println("\nWrong Customer Number or Wrong PIN Number\n\n");
+                else
+                {
+                    System.out.println("Would like to join our family? [YES/NO]");
+                    String customerPreference = menuInput.nextLine();
+                    if(customerPreference.equalsIgnoreCase("yes")) {
+                        Customers.customerManager();
+                    }
+                    else{
+                        System.out.println("Thanks, see you again");
+                        System.exit(0);
+                    }
                 }
             }
             catch(Exception e){
@@ -46,11 +61,14 @@ public class AccountOptions extends Accounts {
         switch (selection) {
             case 1 -> getChecking();
             case 2 -> getSaving();
-            case 3 -> System.out.println("Thank you for using ATM, BYE\n");
+            case 3 -> {
+                System.out.println("Exiting...");
+                menuInput.close();
+                System.exit(0);
+            }
             default -> System.out.println("\n Invalid Choice \n");
         }
     }
-
 
     public void getChecking() {
         System.out.println("Checking Account");
@@ -75,7 +93,11 @@ public class AccountOptions extends Accounts {
                 getCheckingDepositInput(filePath, account, pin, accountBalance);
                 getAccountType();
             }
-            case 4 -> System.out.println("Thank you for using ATM, Bye");
+            case 4 -> {
+                System.out.println("Exiting...");
+                menuInput.close();
+                System.exit(0);
+            }
             default -> {
                 System.out.println("\nInvalid Choice\n");
                 getChecking();
@@ -107,7 +129,11 @@ public class AccountOptions extends Accounts {
                 getSavingDepositInput(filePath, account, pin, accountBalance);
                 getAccountType();
             }
-            case 4 -> System.out.println("Thank you for using ATM, Bye\n");
+            case 4 -> {
+                System.out.println("Exiting...");
+                menuInput.close();
+                System.exit(0);
+            }
             default -> {
                 System.out.println("\nInvalid Choice\n");
                 getChecking();
