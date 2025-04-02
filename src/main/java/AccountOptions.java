@@ -7,8 +7,8 @@ public class AccountOptions extends Accounts {
     DecimalFormat moneyFormat = new DecimalFormat("'$'###,##0.00");
     // simulate json file as db
     String filePath = "accountsDB.json";
-    int account;
-    int pin;
+    private static int account;
+    private static int pin;
 
     public void getLogin() {
         int x = 1;
@@ -20,7 +20,7 @@ public class AccountOptions extends Accounts {
                 System.out.println("Enter your PIN Number");
                 pin = menuInput.nextInt();
 
-                Boolean isValidCustomer = Utils.validateAccount(filePath, account, pin);
+                boolean isValidCustomer = Utils.validateAccount(filePath, account, pin);
                 if(isValidCustomer){
                     getAccountType();
                 }
@@ -68,11 +68,11 @@ public class AccountOptions extends Accounts {
                 getAccountType();
             }
             case 2 -> {
-                getCheckingWithdrawInput(accountBalance);
+                getCheckingWithdrawInput(filePath, account, pin, accountBalance);
                 getAccountType();
             }
             case 3 -> {
-                getCheckingDepositInput(accountBalance);
+                getCheckingDepositInput(filePath, account, pin, accountBalance);
                 getAccountType();
             }
             case 4 -> System.out.println("Thank you for using ATM, Bye");
@@ -92,18 +92,19 @@ public class AccountOptions extends Accounts {
         System.out.print("Choice: ");
 
         int selection = menuInput.nextInt();
+        int accountBalance = Utils.getAccountBalance(filePath, account, pin);
 
         switch (selection) {
             case 1 -> {
-                System.out.println("Saving Account Balance: " + moneyFormat.format(getSavingBalance()));
+                System.out.println("Saving Account Balance: " + moneyFormat.format(accountBalance));
                 getAccountType();
             }
             case 2 -> {
-                getSavingWithdrawInput();
+                getSavingWithdrawInput(filePath, account, pin, accountBalance);
                 getAccountType();
             }
             case 3 -> {
-                getSavingDepositInput();
+                getSavingDepositInput(filePath, account, pin, accountBalance);
                 getAccountType();
             }
             case 4 -> System.out.println("Thank you for using ATM, Bye\n");
